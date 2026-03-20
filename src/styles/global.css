@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "@midudev/tailwind-animations";
+
+@theme {
+  --font-headline: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-surface-elevated: #1A1A1A;
+  --color-text-primary: #E8E8E8;
+  --color-text-secondary: #888888;
+  --color-accent-primary: #1DB954;
+  --color-accent-secondary: #8B5CF6;
+  --color-glass-border: oklch(from white l c h / 0.1);
+  --color-glass-bg: oklch(from white l c h / 0.05);
+}
+
+@utility glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1rem;
+}
+
+@utility glass-strong {
+  background: oklch(from white l c h / 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(from white l c h / 0.15);
+  border-radius: 1rem;
+}
