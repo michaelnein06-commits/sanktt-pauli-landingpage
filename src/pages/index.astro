@@ -1,23 +1,122 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const featured = {
+  name: 'BEACH CLUB HOUSE MIX',
+  saves: '59k+',
+  embedUrl: 'https://open.spotify.com/embed/playlist/0OhEw39s0z1t84iPpaTUoN?theme=0',
+};
+
+const playlists = [
+  { name: 'feeling hot', saves: '838', embedUrl: 'https://open.spotify.com/embed/playlist/0C3ugMCUtItIJddLYTMApo?theme=0' },
+  { name: 'Rooftop Martini Lounge (Jazz House)', saves: '669', embedUrl: 'https://open.spotify.com/embed/playlist/7sq8NOag4OERxeeAYX9oUE?theme=0' },
+  { name: 'it girl morning', saves: '509', embedUrl: 'https://open.spotify.com/embed/playlist/2swbGDjGjMk3F5Kedpag8y?theme=0' },
+  { name: 'YACHT PARTY', saves: '310', embedUrl: 'https://open.spotify.com/embed/playlist/15e8dgBxsq5o2lc8ZAAGkY?theme=0' },
+  { name: 'soft feminine energy', saves: '228', embedUrl: 'https://open.spotify.com/embed/playlist/4AGx6Tn5nPxXFa6Khhvq4i?theme=0' },
+];
 ---
 
 <Layout>
-  <main class="container mx-auto px-4 py-16">
-    <h1 class="font-headline text-4xl font-bold text-accent-primary mb-4">
-      sanktt.pauli
-    </h1>
-    <p class="text-text-secondary text-lg mb-8">
-      Spotify Playlist Landingpage — Coming Soon
-    </p>
+  <main>
+    <!-- Playlists Section -->
+    <section id="playlists" class="container mx-auto px-4 py-20">
+      <!-- Section Header -->
+      <div class="text-center mb-16 animate-item">
+        <h1 class="font-headline text-5xl md:text-6xl font-bold text-text-primary mb-4">
+          sanktt.pauli
+        </h1>
+        <p class="text-text-secondary text-lg">
+          Curated Playlists for Every Mood
+        </p>
+      </div>
 
-    <div class="glass p-8 max-w-md">
-      <h2 class="font-headline text-xl font-semibold text-text-primary mb-2">
-        Glassmorphism Card
-      </h2>
-      <p class="text-text-secondary">
-        Projekt-Setup abgeschlossen. Design folgt.
-      </p>
-    </div>
+      <!-- Featured Playlist: Beach Club House Mix -->
+      <div class="mb-16 animate-item">
+        <div class="relative p-[2px] rounded-2xl bg-gradient-to-r from-accent-primary to-accent-secondary max-w-4xl mx-auto">
+          <div class="bg-surface rounded-2xl p-6 md:p-8">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-headline text-3xl md:text-4xl font-bold text-text-primary">
+                {featured.name}
+              </h2>
+              <span class="text-accent-primary font-semibold text-lg bg-accent-primary/10 px-4 py-1.5 rounded-full whitespace-nowrap ml-4">
+                {featured.saves} saves
+              </span>
+            </div>
+            <iframe
+              src={featured.embedUrl}
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              style="border-radius: 12px;"
+              title={featured.name}
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playlist Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {playlists.map((playlist, i) => (
+          <div
+            class="animate-item playlist-card glass rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-primary/5"
+            style={`--delay: ${i * 100}ms`}
+          >
+            <iframe
+              src={playlist.embedUrl}
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              style="border-radius: 12px;"
+              title={playlist.name}
+            ></iframe>
+            <div class="mt-4 flex items-center justify-between">
+              <h3 class="font-headline text-lg font-semibold text-text-primary truncate mr-3">
+                {playlist.name}
+              </h3>
+              <span class="text-accent-primary text-sm font-medium bg-accent-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                {playlist.saves} saves
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   </main>
+
+  <!-- Scroll-triggered Animations -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = el.style.getPropertyValue('--delay') || '0ms';
+            el.style.transitionDelay = delay;
+            el.classList.add('is-visible');
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.animate-item').forEach((el) => observer.observe(el));
+  </script>
 </Layout>
+
+<style>
+  .animate-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
