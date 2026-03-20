@@ -99,15 +99,28 @@
   50% { transform: translateY(8px); opacity: 1; }
 }
 
-/* Respect reduced motion preference */
+/* Grain Texture: reduce on mobile for performance */
+@media (max-width: 768px) {
+  .grain-overlay {
+    display: none;
+  }
+}
+
+/* Respect reduced motion preference — ALL animations */
 @media (prefers-reduced-motion: reduce) {
-  .hero-blob,
-  .hero-letter,
-  .hero-tagline,
-  .scroll-cue {
-    animation: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
   .hero-blob { transform: translate(-50%, -50%); }
   .hero-letter,
   .hero-tagline { opacity: 1; transform: none; }
+  .animate-item {
+    opacity: 1;
+    transform: none;
+  }
 }

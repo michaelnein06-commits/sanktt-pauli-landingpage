@@ -3,9 +3,16 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = 'sanktt.pauli — Spotify Playlist' } = Astro.props;
+const {
+  title = 'sanktt.pauli — Curated Spotify Playlists',
+  description = 'Discover curated Spotify playlists by sanktt.pauli. Beach house, jazz lounge, yacht party vibes and more. 60k+ saves on top playlist.',
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+const ogImage = '/og-image.png';
 ---
 
 <!doctype html>
@@ -14,7 +21,34 @@ const { title = 'sanktt.pauli — Spotify Playlist' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="spotify, playlist, curated, beach house, jazz lounge, yacht party, sanktt.pauli" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Plausible Analytics wird nach Setup aktiviert -->
+    <!-- <script defer data-domain="DOMAIN_HIER" src="https://plausible.DOMAIN/js/script.js"></script> -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,8 +57,8 @@ const { title = 'sanktt.pauli — Spotify Playlist' } = Astro.props;
     />
   </head>
   <body class="bg-bg text-text-primary font-body min-h-screen relative">
-    <!-- Grain Texture Overlay -->
-    <div class="fixed inset-0 pointer-events-none z-50" style="opacity: 0.12;">
+    <!-- Grain Texture Overlay (hidden on mobile for performance) -->
+    <div class="grain-overlay fixed inset-0 pointer-events-none z-50" style="opacity: 0.12;">
       <svg class="w-full h-full">
         <filter id="grain">
           <feTurbulence
