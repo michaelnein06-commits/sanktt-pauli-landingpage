@@ -1,0 +1,35 @@
+---
+const title = 'sanktt.pauli';
+const letters = title.split('');
+---
+
+<section class="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
+  <!-- Gradient Blob -->
+  <div class="hero-blob absolute w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] rounded-full opacity-30 blur-[100px]" />
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4">
+    <h1 class="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-6">
+      {letters.map((letter, i) => (
+        <span
+          class="hero-letter inline-block"
+          style={`animation-delay: ${i * 0.08}s`}
+        >
+          {letter === '.' ? <span class="text-accent-primary">.</span> : letter}
+        </span>
+      ))}
+    </h1>
+    <p class="hero-tagline text-text-secondary text-lg sm:text-xl md:text-2xl font-body font-light tracking-wide">
+      curating vibes for 60k+ listeners
+    </p>
+  </div>
+
+  <!-- Scroll Cue -->
+  <div class="absolute bottom-8 inset-x-0 flex justify-center">
+    <div class="scroll-cue">
+      <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </div>
+</section>
