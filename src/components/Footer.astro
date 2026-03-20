@@ -1,0 +1,79 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer id="contact" class="relative mt-20">
+  <!-- Gradient Divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-accent-primary/50 to-transparent" />
+
+  <div class="container mx-auto px-4 py-16">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+        <!-- Brand -->
+        <div>
+          <a href="/" class="font-headline text-2xl font-bold text-text-primary tracking-tight">
+            sanktt.pauli
+          </a>
+          <p class="text-text-secondary text-sm mt-3">
+            curated with love
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="font-headline text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">
+            Connect
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="https://open.spotify.com/user/babygirl2000_"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-text-secondary hover:text-accent-primary transition-colors duration-200 text-sm"
+              >
+                Spotify
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors duration-200 text-sm">
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors duration-200 text-sm">
+                TikTok
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="font-headline text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">
+            Legal
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="/privacy" class="text-text-secondary hover:text-accent-primary transition-colors duration-200 text-sm">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/impressum" class="text-text-secondary hover:text-accent-primary transition-colors duration-200 text-sm">
+                Impressum
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="mt-12 pt-8 border-t border-white/5 text-center">
+        <p class="text-text-secondary text-xs">
+          &copy; {currentYear} sanktt.pauli. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
